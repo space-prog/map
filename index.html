@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <title>Treasure finder</title>
+</head>
+
+<body>
+    <div id="game-wrap">
+        <div id="hud">
+            <span>Режим: <strong id="mode-label">—</strong></span>
+            <div id="score-bar"></div>
+            <span>Очки: <strong id="score">0</strong></span>
+        </div>
+        <div id="field" style="position:relative">
+            <div id="overlay">
+                <div id="modal">
+                    <h2>Оберіть тяжкість</h2>
+                    <p>На карті з'явиться точка, тобі поьтрібно буде клікнути як можна ближче до неї</p>
+                    <button class="mode-btn easy" onclick="startGame('easy')">Легка — радіус 150px</button>
+                    <button class="mode-btn medium" onclick="startGame('medium')">Середня — радіус 100px, 7
+                        життів</button>
+                    <button class="mode-btn hard" onclick="startGame('hard')">Тяжка — радіус 75px, 5 життів</button>
+                </div>
+            </div>
+            <div id="toast"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
