@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+        rel="stylesheet">
     <title>Treasure finder</title>
 </head>
 
@@ -20,19 +21,20 @@
         </div>
         <div id="field" style="position:relative">
             <div id="overlay">
-                <div id="modal">
-                    <h2>Оберіть тяжкість</h2>
-                    <p>На карті з'явиться точка, тобі поьтрібно буде клікнути як можна ближче до неї</p>
-                    <button class="mode-btn easy" onclick="startGame('easy')">Легка — радіус 30px</button>
-                    <button class="mode-btn medium" onclick="startGame('medium')">Середня — радіус 20px, 7
-                        життів</button>
-                    <button class="mode-btn hard" onclick="startGame('hard')">Тяжка — радіус 10px, 5 життів</button>
-                </div>
+
             </div>
             <div id="toast"></div>
+
+        </div>
+        <div id="modal">
+            <h2>Оберіть тяжкість</h2>
+            <p>На карті з'явиться точка, тобі поьтрібно буде клікнути як можна ближче до неї</p>
+            <button class="mode-btn easy">Легка — радіус 30px</button>
+            <button class="mode-btn medium">Середня — радіус 20px, 7
+                життів</button>
+            <button class="mode-btn hard">Тяжка — радіус 10px, 5 життів</button>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 

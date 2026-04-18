@@ -15,28 +15,49 @@ const configs = {
         label: 'Тяжкий'
     }
 };
-let cfg, lives, score, dot, active = false;
+const easyBtn = document.querySelector(".easy"),
+    mediumBtn = document.querySelector(".medium"),
+    hardBtn = document.querySelector(".hard");
+
+let cfg, dot, active = false;
+
+let score = 0, 
+    lives = 0;
 
 function startGame(mode) {
     cfg = configs[mode];
+    console.log(cfg + " Config")
     lives = cfg.lives;
-    score = 0;
+    // let score = 0;
     active = true;
     document.getElementById('overlay').style.display = 'none';
+    document.getElementById('modal').style.display = 'none'
     document.getElementById('mode-label').textContent = cfg.label;
     document.getElementById('score').textContent = 0;
-    renderHearts();
+    let cross = document.querySelectorAll(".cross")
+    if (cross) {
+        cross.forEach(item => {
+            removeCross(item)
+        });
+    }
+    renderHearts(lives);
     spawnDot();
-}
+    console.log(cfg)
 
-function renderHearts() {
+    
+}
+easyBtn.addEventListener("click", () => startGame('easy'))
+mediumBtn.addEventListener("click", () => startGame('medium'))
+hardBtn.addEventListener("click", () => startGame('hard'))
+
+function renderHearts(lives) {
     const bar = document.getElementById('score-bar');
-    if (cfg.lives === Infinity) {
+    if (lives === Infinity) {
         bar.innerHTML = '<span>∞ життів</span>';
         return;
     }
     bar.innerHTML = '';
-    for (let i = 0; i < cfg.lives; i++) {
+    for (let i = 0; i < lives; i++) {
         const h = document.createElement('span');
         h.className = 'heart';
         h.textContent = i < lives ? '❤️' : '🖤';
@@ -70,8 +91,8 @@ function removeDot() {
 
 function showCross(x, y) {
     const field = document.getElementById('field');
-    const c = document.createElement('div');
-    c.className = 'cross';
+    const c = document.createElement("span");
+    c.classList.add("cross")
     c.style.left = x + 'px';
     c.style.top = y + 'px';
     c.textContent = '✕';
@@ -86,25 +107,22 @@ function showToast(msg) {
     t._tid = setTimeout(() => t.classList.remove('show'), 1800);
 }
 
+function removeCross(c) {
+    if (c) {
+        console.log(c)
+        c.remove()
+    }
+}
+
 function gameOver() {
     active = false;
     removeDot();
     const overlay = document.getElementById('overlay');
     const modal = document.getElementById('modal');
+    modal.style.display = "block"
     overlay.style.display = 'flex';
-    modal.innerHTML = `<h2 style="color:red">Гру закінчено!</h2>
-    <p style="margin:0.75rem 0 1.25rem; font-size: 18px;">Ваш рахунок: <strong>${score}</strong></p>
-    <button class="mode-btn easy" onclick="resetModal()">Грати знову</button>`;
 }
 
-function resetModal() {
-    const modal = document.getElementById('modal');
-    modal.innerHTML = `<h2>Оберіть тяжкість</h2>
-    <p>На карті з'явиться точка, тобі поьтрібно буде клікнути як можна ближче до неї</p>
-    <button class="mode-btn easy" onclick="startGame('easy')">Легка — радіус 150px</button>
-    <button class="mode-btn medium" onclick="startGame('medium')">Середня — радіус 100px, 7 життів</button>
-    <button class="mode-btn hard" onclick="startGame('hard')">Тяжка — радіус 75px, 5 життів</button>`;
-}
 
 document.getElementById('field').addEventListener('click', function (e) {
     if (!active || !dot) return;
@@ -124,7 +142,7 @@ document.getElementById('field').addEventListener('click', function (e) {
     } else {
         if (cfg.lives !== Infinity) {
             lives--;
-            renderHearts();
+            renderHearts(lives);
             showToast('Мимо! Відстань: ' + dist + 'px — -1 життя');
             if (lives <= 0) {
                 setTimeout(gameOver, 500);
@@ -135,3 +153,5 @@ document.getElementById('field').addEventListener('click', function (e) {
         }
     }
 });
+
+//кнопка виходу просто показувати попап з скор, зміна тексту на гейм овер

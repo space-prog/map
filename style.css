@@ -31,6 +31,11 @@ body {
 }
 
 #modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 20;
+    transform: translate(-50%, -50%);
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(20px);
     border: 2px solid #fff;
