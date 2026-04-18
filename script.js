@@ -1,16 +1,16 @@
 const configs = {
     easy: {
-        radius: 150,
+        radius: 30,
         lives: Infinity,
         label: 'Легкий'
     },
     medium: {
-        radius: 100,
+        radius: 20,
         lives: 7,
         label: 'Середній'
     },
     hard: {
-        radius: 75,
+        radius: 10,
         lives: 5,
         label: 'Тяжкий'
     }
@@ -76,7 +76,6 @@ function showCross(x, y) {
     c.style.top = y + 'px';
     c.textContent = '✕';
     field.appendChild(c);
-    setTimeout(() => c.remove(), 600);
 }
 
 function showToast(msg) {
@@ -134,7 +133,5 @@ document.getElementById('field').addEventListener('click', function (e) {
         } else {
             showToast('Мимо! Відстань: ' + dist + 'px');
         }
-        removeDot();
-        setTimeout(spawnDot, 400);
     }
 });

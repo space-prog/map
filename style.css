@@ -118,6 +118,7 @@ body {
     width: 14px;
     height: 14px;
     border-radius: 50%;
+    opacity: 0;
     background: #E24B4A;
     transform: translate(-50%, -50%);
     pointer-events: none;
